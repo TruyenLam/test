@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnYeuCauXe,btnThongTinXe;
     ListView lvXe;
     public static final String TAG = LoginActivity.class.getSimpleName();
+    String responseBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
 
                     getHttpResponse();
+                    Toast.makeText(MainActivity.this,responseBody,Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -62,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         //tạo url có parameter
         String url = "http://local.thttextile.com.vn/thtapigate/api/QLSX/XeVai/Get_ThongTinXe?xe=";
-
-//        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://local.thttextile.com.vn/thtapigate/api/QLSX/XeVai/Get_ThongTinXe").newBuilder();
-//        urlBuilder.addQueryParameter("xe", "");
-//        String url = urlBuilder.build().toString();
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String body = response.body().string();
                 Log.d(TAG,body);//ok
+                responseBody = body;
             }
         });
 
