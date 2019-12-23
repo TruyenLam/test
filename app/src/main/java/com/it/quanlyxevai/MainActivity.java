@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.it.quanlyxevai.api.AppUtils;
+import com.it.quanlyxevai.base.AppPref;
+import com.it.quanlyxevai.base.BaseActivity;
+import com.it.quanlyxevai.base.Constant;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -19,29 +24,30 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.it.quanlyxevai.LoginActivity.API_KEY;
+public class MainActivity extends BaseActivity {
 
-
-public class MainActivity extends AppCompatActivity {
-
-    String key = API_KEY;
+    String key = "";
     Button btnYeuCauXe,btnThongTinXe;
     ListView lvXe;
     public static final String TAG = LoginActivity.class.getSimpleName();
     String responseBody;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutResourceID() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
+        // Get token đã lưu khi đăng nhập !
+        String token = AppPref.getString(getApplicationContext(), Constant.PREF_TOKEN, "");
+        AppUtils.showToast(getApplicationContext(), "Token is : " + token);
 
         //ánh xạ từ xml
         btnThongTinXe = (Button) findViewById(R.id.buttonThongTinXe);
         btnYeuCauXe = (Button) findViewById(R.id.buttonYeuCauXe);
         lvXe = (ListView) findViewById(R.id.listViewXe);
 
-
-        //Toast.makeText(MainActivity.this,keytoken,Toast.LENGTH_LONG).show();
         btnYeuCauXe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadToken() {
-        SharedPreferences pre=getSharedPreferences ("my_token",MODE_PRIVATE);
-        String keytoken = pre.getString("token","");
-        Log.d("tokenMainActivity",keytoken);
-    }
     public void getHttpResponse() throws IOException {
 
         //tạo url có parameter

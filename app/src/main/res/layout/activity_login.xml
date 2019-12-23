@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
     </LinearLayout>
 
@@ -33,12 +32,12 @@
             android:drawableLeft="@drawable/ic_account_box_24dp"
             android:hint="Tài khoản đăng nhập"
             android:inputType="textPersonName"
-            android:text="truyen.lv"
+            android:text="hungd"
+            android:drawablePadding="5dp"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
-
             android:id="@+id/editTextPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +47,8 @@
             android:drawableLeft="@drawable/key"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
-            android:text="123"
+            android:text="789"
+            android:drawablePadding="5dp"
             android:textSize="20sp"
             android:textStyle="italic" />
 
@@ -57,8 +57,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:background="@drawable/button_3state"
-            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
             android:text="Đăng nhập" />
     </LinearLayout>
 
