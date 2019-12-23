@@ -73,7 +73,7 @@ public class BaseApiHandler {
                             Request request = chain.request().newBuilder()
                                     .addHeader("Accept", "application/json")
                                     .addHeader("Content-Type", "application/json")
-                                    .addHeader("Authorization", "Bearer".concat(AppPref.getString(context, Constant.PREF_TOKEN, "")))
+                                    .addHeader("Authorization", "Bearer ".concat(AppPref.getString(context, Constant.PREF_TOKEN, "")))
                                     .build();
                             return chain.proceed(request);
                         }).build();
